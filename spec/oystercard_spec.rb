@@ -35,22 +35,31 @@ RSpec.describe Oystercard do
 
   describe "#deduct" do
     it 'should deduct the fare from the card' do
+      @my_oystercard_a.touch_in("Waterloo")
       expect(@my_oystercard_b.deduct(10)).to eq 10
     end
   end
 
   describe "#touch_in" do
-    it 'should touch in to get through the barriers and set @on_journey to true' do
+    it 'should touch in to get through the barriers and set and call on_journey' do
       expect(@my_oystercard_a.touch_in("Waterloo")).to eq true
     end
-    end
+  end
 
   describe "#touch_in" do
     it 'should touch in to get through the barriers and set @on_journey to true' do
       @my_oystercard_a.touch_in("Waterloo")
-      expect(@my_oystercard_a.entry_station).to eq ["Waterloo"]
+      expect(@my_oystercard_a.entry_station).to eq "Waterloo"
     end
   end
+
+  # describe "#touch_in" do
+  #   it 'should forget the station by inputting nil' do
+  #     @my_oystercard_a.touch_in("Waterloo")
+  #     @my_oystercard_a.touch_in("")
+  #     expect(@my_oystercard_a.entry_station).to eq ""
+  #   end
+  # end
 
   describe "#touch_out" do
     it 'should touch out to get through the barriers and set @on_journey to false' do

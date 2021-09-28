@@ -40,10 +40,11 @@ In order to pay for my journey
 As a customer
 I need to pay for my journey when it's complete
 
-
+//entry_station + touch_in(station_name)
 In order to pay for my journey
 As a customer
 I need to know where I've travelled from
+
 
 In order to know where I have been
 As a customer
@@ -73,3 +74,5 @@ I need to have the correct fare calculated
 | | touch_out | I need to touch out | In order to get through the barriers
 | | on_journey? | I need to check if the customer is on a journey/if the card is in use | So that they dont have to go through barriers yet
 | | minimum_balance? | I need to have the minimum amount (£1) for a single journey | So that i can go on a journey
+| | entry_station | I need to know where i have travelled from | In order to pay for my journey
+| | 

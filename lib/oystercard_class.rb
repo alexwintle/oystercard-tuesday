@@ -4,8 +4,7 @@ class Oystercard
 
   def initialize(starting_balance)
     @balance = starting_balance
-    @on_journey = false
-    @entry_station = []
+    @entry_station = ""
   end
 
   attr_reader :balance
@@ -28,17 +27,21 @@ class Oystercard
   end
 
   def touch_in(station_name)
-    @entry_station.push(station_name)
-    @on_journey = true
+    @entry_station << station_name.to_s
+    on_journey?
   end
 
   def touch_out(fare)
     deduct(fare)
-    @on_journey = false
+    on_journey?
   end
 
   def on_journey?
-    @on_journey
+    if @entry_station.size > 0
+      true
+    else
+      false
+    end
   end
 
   def minimum_balance?
@@ -50,3 +53,6 @@ class Oystercard
   end
 
 end
+
+oystercard_a = Oystercard.new(20)
+puts oystercard_a.touch_in("waterloo")
