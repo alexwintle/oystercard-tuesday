@@ -35,9 +35,11 @@ In order to pay for my journey
 As a customer
 I need to have the minimum amount for a single journey
 
+//touch_out refactor -> touch_out(fare)
 In order to pay for my journey
 As a customer
 I need to pay for my journey when it's complete
+
 
 In order to pay for my journey
 As a customer

@@ -5,10 +5,11 @@ class Oystercard
   def initialize(starting_balance)
     @balance = starting_balance
     @on_journey = false
-
+    @entry_station = []
   end
 
   attr_reader :balance
+  attr_reader :entry_station
 
   def top_up(amount)
     new_balance = (@balance += amount)
@@ -26,7 +27,8 @@ class Oystercard
     @balance -= fare
   end
 
-  def touch_in
+  def touch_in(station_name)
+    @entry_station.push(station_name)
     @on_journey = true
   end
 

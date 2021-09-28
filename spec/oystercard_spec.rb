@@ -41,7 +41,14 @@ RSpec.describe Oystercard do
 
   describe "#touch_in" do
     it 'should touch in to get through the barriers and set @on_journey to true' do
-      expect(@my_oystercard_a.touch_in).to eq true
+      expect(@my_oystercard_a.touch_in("Waterloo")).to eq true
+    end
+    end
+
+  describe "#touch_in" do
+    it 'should touch in to get through the barriers and set @on_journey to true' do
+      @my_oystercard_a.touch_in("Waterloo")
+      expect(@my_oystercard_a.entry_station).to eq ["Waterloo"]
     end
   end
 
@@ -67,7 +74,7 @@ RSpec.describe Oystercard do
 
   describe "#on_journey?" do
     it 'should return whether the customer is on a journey after touching-in' do
-      @my_oystercard_a.touch_in
+      @my_oystercard_a.touch_in("Waterloo")
       expect(@my_oystercard_a.on_journey?).to eq true
     end
   end
