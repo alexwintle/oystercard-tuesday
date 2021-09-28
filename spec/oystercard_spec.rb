@@ -71,4 +71,17 @@ RSpec.describe Oystercard do
     end
   end
 
+  describe "#minimum_balance?" do
+    it 'should return whether the customer has the minimum balance to make a journey (true in this case)' do
+      expect(@my_oystercard_a.minimum_balance?).to eq true
+    end
+  end
+
+  describe "#minimum_balance?" do
+    it 'should return whether the customer has the minimum balance to make a journey (false in this case)' do
+      @my_oystercard_b.deduct(20) #this oystercard now has a balance of £0
+      expect(@my_oystercard_b.minimum_balance?).to eq false
+    end
+  end
+
 end

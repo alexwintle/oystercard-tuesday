@@ -30,7 +30,7 @@ In order to get through the barriers
 As a customer
 I need to touch in and out
 
-
+//minimum_balance?
 In order to pay for my journey
 As a customer
 I need to have the minimum amount for a single journey
@@ -70,5 +70,4 @@ I need to have the correct fare calculated
 | | touch_in | I need to touch in | In order to get through the barriers 
 | | touch_out | I need to touch out | In order to get through the barriers
 | | on_journey? | I need to check if the customer is on a journey/if the card is in use | So that they dont have to go through barriers yet
-
-
+| | minimum_balance? | I need to have the minimum amount (£1) for a single journey | So that i can go on a journey
