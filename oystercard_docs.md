@@ -84,5 +84,8 @@ I need to have the correct fare calculated
 | | balance | I need to know what the balance on the oystercard is | In order to be able to check whether the customer can pay for a journey etc.
 | | journeys | I want to see to all my previous trips | I want to see to all my previous trips
 | | journey_formatter | I want to format the hashes that i will be storing in the @journeys array | So that it is clear and human readable
-| Station | | I want to know what zone a station is in | In order to know how far I have travelled
-
+| Station | initialize | I want to know what zone a station is in and what its name is | In order to know how far I have travelled
+| | station_name | I want to know what the stations name is | In order to know how far I have travelled 
+| | zone | I want to know what zone a station is in | In order to know how far I have travelled
+| Journey | initialize |  it should be responsible for starting a journey, finishing a journey, calculating the fare of a journey, and returning whether or not the journey is complete.| 
+| | #fare | I need a penalty charge deducted if I fail to touch in or out | In order to be charged correctly
