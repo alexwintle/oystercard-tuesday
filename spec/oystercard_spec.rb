@@ -28,7 +28,7 @@ RSpec.describe Oystercard do
       expect(@my_oystercard_b.top_up(30)).to eq 50
     end
 
-    it 'should raise an error when maximum balance is exceeded' do
+    it 'should raise an error when maximum balance is exceeded (in this case it is exceeded - return error)' do
       expect(@my_oystercard_b.top_up(71)).to eq "Cannot exceed maximum limit of £90"
     end
   end
@@ -47,13 +47,20 @@ RSpec.describe Oystercard do
 
   describe "#touch_out" do
     it 'should touch out to get through the barriers and set @on_journey to false' do
-      expect(@my_oystercard_a.touch_out).to eq false
+      expect(@my_oystercard_a.touch_out(10)).to eq false
+    end
+  end
+
+  describe "#touch_out" do
+    it 'should touch out to get through the barriers and set @on_journey to false and deduct the fare from the balance' do
+      @my_oystercard_a.touch_out(10)
+      expect(@my_oystercard_a.balance).to eq 0
     end
   end
 
   describe "#on_journey?" do
     it 'should return whether the customer is on a journey after touching-out' do
-      @my_oystercard_a.touch_out
+      @my_oystercard_a.touch_out(10)
       expect(@my_oystercard_a.on_journey?).to eq false
     end
   end
