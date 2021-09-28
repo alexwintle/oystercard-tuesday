@@ -1,3 +1,5 @@
+require 'station'
+
 class Oystercard
   MAXIMUM_LIMIT = 90
   MINIMUM_BALANCE = 1
@@ -67,7 +69,7 @@ class Oystercard
 
 end
 
-oystercard_a = Oystercard.new(20)
-oystercard_a.touch_in("Waterloo")
-oystercard_a.touch_out(10, "Bank")
-puts oystercard_a.journeys
+# oystercard_a = Oystercard.new(20)
+# oystercard_a.touch_in("Waterloo")
+# oystercard_a.touch_out(10, "Bank")
+# puts oystercard_a.journeys

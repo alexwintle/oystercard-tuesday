@@ -84,5 +84,5 @@ I need to have the correct fare calculated
 | | balance | I need to know what the balance on the oystercard is | In order to be able to check whether the customer can pay for a journey etc.
 | | journeys | I want to see to all my previous trips | I want to see to all my previous trips
 | | journey_formatter | I want to format the hashes that i will be storing in the @journeys array | So that it is clear and human readable
-| Station | | |
+| Station | | I want to know what zone a station is in | In order to know how far I have travelled
 

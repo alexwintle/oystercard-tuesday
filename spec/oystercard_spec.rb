@@ -1,4 +1,5 @@
 require 'oystercard'
+require 'station'
 
 RSpec.describe Oystercard do
 
