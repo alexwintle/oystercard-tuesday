@@ -33,4 +33,10 @@ RSpec.describe Oystercard do
     end
   end
 
+  describe "#deduct" do
+    it 'should deduct the fare from the card' do
+      expect(@my_oystercard_b.deduct(10)).to eq 10
+    end
+  end
+
 end
