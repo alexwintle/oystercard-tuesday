@@ -45,10 +45,11 @@ In order to pay for my journey
 As a customer
 I need to know where I've travelled from
 
-
+//journeys
 In order to know where I have been
 As a customer
 I want to see to all my previous trips
+
 
 In order to know how far I have travelled
 As a customer
@@ -67,12 +68,19 @@ I need to have the correct fare calculated
 | Object | Messages | Verbs | Purpose
 | --- | --- | --- | --- |
 | Oystercard | initialize | I want money on my card | So i can use public transport 
-| | top_up | I want to add money on my card | So i can use public transport
-| | top_up | I dont want to put too much money on my card | To protect my money
-| | deduct | I need my fare deducted from my card | In order to pay for my journey
-| | touch_in | I need to touch in | In order to get through the barriers 
+| | top_up(amount) | I want to add money on my card | So i can use public transport
+| | top_up(amount) | I want a maximum limit (of £90) on my card | In order to protect my money from theft or loss
+| | deduct(fare) | I need my fare deducted from my card | In order to pay for my journey
+| | touch_in | I need to touch in | In order to get through the barriers
+| | touch_in(station_name) | I need to know where I've travelled from | In order to pay for my journey
 | | touch_out | I need to touch out | In order to get through the barriers
-| | on_journey? | I need to check if the customer is on a journey/if the card is in use | So that they dont have to go through barriers yet
+| | touch_out(fare) | I need to pay for my journey when it's complete | In order to pay for my journey
+| | touch_out(fare, exit_station) | When my journey is complete, I need the correct amount deducted from my card | In order to pay for my journey
+| | on_journey? | I need to check if the customer is on a journey/if the card is in use | To track the state of the card (in use or not)
+| | | I need to check if the customer is on a journey/if the card is in use | I want to remove the @on_journey instance variable, i'll check whether the @entry_station has been added
 | | minimum_balance? | I need to have the minimum amount (£1) for a single journey | So that i can go on a journey
 | | entry_station | I need to know where i have travelled from | In order to pay for my journey
-| | 
+| | exit_station | I need to know where i have travelled to | In order to pay for my journey
+| | balance | I need to know what the balance on the oystercard is | In order to be able to check whether the customer can pay for a journey etc.
+| | journeys | I want to see to all my previous trips | I want to see to all my previous trips
+| | journey_formatter | I want to format the hashes that i will be storing in the @journeys array | So that it is clear and human readable

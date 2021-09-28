@@ -42,7 +42,7 @@ class Oystercard
   end
 
   def journey_formatter(entry_station, exit_station, fare)
-    journey_hash = {
+    {
       "Entry Station: " => entry_station,
       "Exit Station: " => exit_station,
       "Fare: " => fare
@@ -68,6 +68,6 @@ class Oystercard
 end
 
 oystercard_a = Oystercard.new(20)
-puts oystercard_a.touch_in("Waterloo")
-puts oystercard_a.touch_out(10, "Bank")
+oystercard_a.touch_in("Waterloo")
+oystercard_a.touch_out(10, "Bank")
 puts oystercard_a.journeys
