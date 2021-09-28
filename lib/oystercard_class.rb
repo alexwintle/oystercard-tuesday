@@ -3,6 +3,7 @@ class Oystercard
 
   def initialize(starting_balance)
     @balance = starting_balance
+    @on_journey = false
   end
 
   attr_reader :balance
@@ -21,6 +22,18 @@ class Oystercard
 
   def deduct(fare)
     @balance -= fare
+  end
+
+  def touch_in
+    @on_journey = true
+  end
+
+  def touch_out
+    @on_journey = false
+  end
+
+  def on_journey?
+    @on_journey
   end
 
 end

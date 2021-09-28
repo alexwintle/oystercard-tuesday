@@ -39,4 +39,36 @@ RSpec.describe Oystercard do
     end
   end
 
+  describe "#touch_in" do
+    it 'should touch in to get through the barriers and set @on_journey to true' do
+      expect(@my_oystercard_a.touch_in).to eq true
+    end
+  end
+
+  describe "#touch_out" do
+    it 'should touch out to get through the barriers and set @on_journey to false' do
+      expect(@my_oystercard_a.touch_out).to eq false
+    end
+  end
+
+  describe "#on_journey?" do
+    it 'should return whether the customer is on a journey after touching-out' do
+      @my_oystercard_a.touch_out
+      expect(@my_oystercard_a.on_journey?).to eq false
+    end
+  end
+
+  describe "#on_journey?" do
+    it 'should return whether the customer is on a journey after touching-in' do
+      @my_oystercard_a.touch_in
+      expect(@my_oystercard_a.on_journey?).to eq true
+    end
+  end
+
+  describe "#on_journey?" do
+    it 'should return whether the customer is on a journey when Oystercard class is initialized (should always return false)' do
+      expect(@my_oystercard_a.on_journey?).to eq false
+    end
+  end
+
 end

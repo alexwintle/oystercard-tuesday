@@ -20,13 +20,16 @@ In order to protect my money
 As a customer
 I don't want to put too much money on my card
 
+//deduct
 In order to pay for my journey
 As a customer
 I need my fare deducted from my card
 
+//touch_in + touch_out + on_journey?
 In order to get through the barriers
 As a customer
 I need to touch in and out
+
 
 In order to pay for my journey
 As a customer
