@@ -111,7 +111,22 @@ RSpec.describe Oystercard do
     it 'should check that the card has an empty list of journeys by default' do
       expect(@my_oystercard_a.journeys).to eq []
     end
+  end
 
+  describe "#touch_in and #touch_out" do
+    it 'should check that touching in and out creates one journey' do
+      @my_oystercard_a.touch_in("Waterloo")
+      @my_oystercard_a.touch_out(10, "Bank")
+      expect(@my_oystercard_a.journeys).to eq [{"Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}]
+    end
+  end
+
+  describe "#touch_in and #touch_out" do
+    it 'should check that touching in and out creates one journey (using .length, instead of checking for a complete hash)' do
+      @my_oystercard_a.touch_in("Waterloo")
+      @my_oystercard_a.touch_out(10, "Bank")
+      expect(@my_oystercard_a.journeys.length).to eq 1
+    end
   end
 
 end

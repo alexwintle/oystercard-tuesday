@@ -67,7 +67,7 @@ class Oystercard
 
 end
 
-# oystercard_a = Oystercard.new(20)
-# puts oystercard_a.touch_in("Waterloo")
-# puts oystercard_a.touch_out(10, "Bank")
-# puts oystercard_a.journeys
+oystercard_a = Oystercard.new(20)
+puts oystercard_a.touch_in("Waterloo")
+puts oystercard_a.touch_out(10, "Bank")
+puts oystercard_a.journeys
