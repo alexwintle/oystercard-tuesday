@@ -5,10 +5,13 @@ class Oystercard
   def initialize(starting_balance)
     @balance = starting_balance
     @entry_station = ""
+    @exit_station = ""
+    @journeys = []
   end
 
   attr_reader :balance
   attr_reader :entry_station
+  attr_reader :journeys
 
   def top_up(amount)
     new_balance = (@balance += amount)
@@ -31,9 +34,19 @@ class Oystercard
     on_journey?
   end
 
-  def touch_out(fare)
+  def touch_out(fare, exit_station)
+    @entry_station = entry_station
+    @journeys.push(journey_formatter(entry_station, exit_station, fare))
     deduct(fare)
     on_journey?
+  end
+
+  def journey_formatter(entry_station, exit_station, fare)
+    journey_hash = {
+      "Entry Station: " => entry_station,
+      "Exit Station: " => exit_station,
+      "Fare: " => fare
+    }
   end
 
   def on_journey?
@@ -54,5 +67,7 @@ class Oystercard
 
 end
 
-oystercard_a = Oystercard.new(20)
-puts oystercard_a.touch_in("waterloo")
+# oystercard_a = Oystercard.new(20)
+# puts oystercard_a.touch_in("Waterloo")
+# puts oystercard_a.touch_out(10, "Bank")
+# puts oystercard_a.journeys

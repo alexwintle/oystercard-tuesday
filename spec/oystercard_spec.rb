@@ -63,20 +63,20 @@ RSpec.describe Oystercard do
 
   describe "#touch_out" do
     it 'should touch out to get through the barriers and set @on_journey to false' do
-      expect(@my_oystercard_a.touch_out(10)).to eq false
+      expect(@my_oystercard_a.touch_out(10, "Bank")).to eq false
     end
   end
 
   describe "#touch_out" do
     it 'should touch out to get through the barriers and set @on_journey to false and deduct the fare from the balance' do
-      @my_oystercard_a.touch_out(10)
+      @my_oystercard_a.touch_out(10, "Bank")
       expect(@my_oystercard_a.balance).to eq 0
     end
   end
 
   describe "#on_journey?" do
     it 'should return whether the customer is on a journey after touching-out' do
-      @my_oystercard_a.touch_out(10)
+      @my_oystercard_a.touch_out(10, "Bank")
       expect(@my_oystercard_a.on_journey?).to eq false
     end
   end
