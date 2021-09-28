@@ -1,4 +1,4 @@
-require 'oystercard_class'
+require 'oystercard'
 
 RSpec.describe Oystercard do
 
