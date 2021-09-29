@@ -1,3 +1,5 @@
+require 'oystercard'
+require 'journey'
 require 'station'
 
 RSpec.describe Station do
