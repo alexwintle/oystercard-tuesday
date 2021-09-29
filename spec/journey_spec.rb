@@ -73,21 +73,37 @@ RSpec.describe Journey do
 
   describe "#touch_in and #touch_out" do
     it 'should check that touching in and out creates one journey' do
+      fare = 10
       @journey.touch_in("Waterloo")
-      @journey.touch_out(10, "Bank")
-      @journey.update_journeys("Waterloo", "Bank", 10)
-      expect(@oystercard.journeys).to eq [{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}]
+      @journey.touch_out("Bank", fare)
+      @oystercard.add_journeys(@journey.update_journeys(fare))
+      expect(@oystercard.journey_history).to eq [[{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}]]
     end
   end
 
   describe "#touch_in and #touch_out" do
     it 'should check that touching in and out creates one journey (using .length, instead of checking for a complete hash)' do
+      fare = 10
       @journey.touch_in("Waterloo")
-      @journey.touch_out(10, "Bank")
-      @journey.update_journeys("Waterloo", "Bank", 10)
-      expect(@oystercard.journeys.length).to eq 1
+      @journey.touch_out("Bank", fare)
+      @oystercard.add_journeys(@journey.update_journeys(fare))
+      expect(@oystercard.journey_history.length).to eq 1
     end
   end
 
+  describe "#touch_in and #touch_out" do
+    it 'should check that touching in and out creates one journey' do
+      fare = 10
+      @journey2 = Journey.new
+      @journey.touch_in("Waterloo")
+      @journey.touch_out("Bank", fare)
+      @oystercard.add_journeys(@journey.update_journeys(fare))
+      @journey2.touch_in("Liverpool")
+      @journey2.touch_out("Fleet", fare)
+      @oystercard.add_journeys(@journey2.update_journeys(fare))
+      expect(@oystercard.journey_history).to eq [[{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}],
+                                                 [{"Entry Station: "=>"Liverpool", "Exit Station: "=>"Fleet", "Fare: "=>10}]]
+    end
+  end
 
 end

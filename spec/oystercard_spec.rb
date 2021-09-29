@@ -16,7 +16,7 @@ RSpec.describe Oystercard do
 
   describe "#initialize" do
     it 'should check that the card has an empty list of journeys by default' do
-      expect(@oystercard.journeys).to eq []
+      expect(@oystercard.journey_history).to eq []
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe Oystercard do
 
   describe "#deduct" do
     it 'should deduct the fare from the card' do
-      expect(@oystercard.deduct(10)).to eq 10
+      expect(@oystercard.deduct(10)).to eq @oystercard.balance
     end
   end
 

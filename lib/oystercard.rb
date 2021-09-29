@@ -1,17 +1,19 @@
-require 'journey'
+require './journey'
 
 class Oystercard
   MAXIMUM_LIMIT = 90
   MINIMUM_BALANCE = 1
 
   def initialize(starting_balance)
-    @balance = 0
     @balance = starting_balance
-    @journeys = []
+    @journey_history = []
   end
 
-  attr_reader :balance
-  attr_reader :journeys
+  attr_reader :balance, :journey_history
+
+  def add_journeys(journey)
+    @journey_history.push(journey)
+  end
 
   def top_up(amount)
     new_balance = (@balance += amount)
@@ -20,12 +22,12 @@ class Oystercard
       @balance = new_balance
 
     elsif new_balance > MAXIMUM_LIMIT
-      return "Cannot exceed maximum limit of £#{MAXIMUM_LIMIT}"
+      "Cannot exceed maximum limit of £#{MAXIMUM_LIMIT}"
     end
 
   end
 
-  def deduct(fare = 0)
+  def deduct(fare)
     @balance -= fare.to_i
   end
 
