@@ -5,6 +5,7 @@ journey2 = Journey.new
 oystercard = Oystercard.new(20)
 journey1.touch_in("Waterloo")
 journey1.touch_out("Bank", 10)
+
 puts "=============BALANCE==========="
 puts oystercard.balance
 puts "=============ENTRY STATION============"

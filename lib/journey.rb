@@ -25,13 +25,18 @@ class Journey
     if on_journey? == false
       true
     else
-      false
+      true
     end
+
   end
 
   def on_journey?
     if @entry_station.size > 0
+      true
+    else
+      false
     end
+
   end
 
   def journey_formatter
@@ -40,6 +45,7 @@ class Journey
       "Exit Station: " => @exit_station,
       "Fare: " => @fare
     }
+
   end
 
 end

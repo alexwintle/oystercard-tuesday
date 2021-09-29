@@ -77,7 +77,7 @@ RSpec.describe Journey do
       @journey.touch_out("Bank", 10)
       @journey.journey_formatter
       @oystercard.add_journeys(@journey.current_journey)
-      expect(@oystercard.journey_history).to eq [[{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}]]
+      expect(@oystercard.journey_history).to eq [{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}]
     end
   end
 
@@ -101,8 +101,8 @@ RSpec.describe Journey do
       @journey.touch_out("Euston", 10)
       @journey.journey_formatter
       @oystercard.add_journeys(@journey.current_journey)
-      expect(@oystercard.journey_history).to eq [[{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}],
-                                                 [{"Entry Station: "=>"Liverpool", "Exit Station: "=>"Euston", "Fare: "=>10}]]
+      expect(@oystercard.journey_history).to eq [{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10},
+                                                 {"Entry Station: "=>"Liverpool", "Exit Station: "=>"Euston", "Fare: "=>10}]
     end
   end
 
