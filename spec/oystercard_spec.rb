@@ -36,7 +36,7 @@ RSpec.describe Oystercard do
     end
 
     it 'should raise an error when maximum balance is exceeded (in this case it is exceeded - return error)' do
-      expect(@oystercard.top_up(71)).to eq "Cannot exceed maximum limit of £90"
+      expect { @oystercard.top_up(71) }.to raise_error "Cannot exceed maximum limit of £#{MAXIMUM_LIMIT}"
     end
   end
 

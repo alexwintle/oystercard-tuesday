@@ -1,8 +1,9 @@
-require './journey'
+require 'journey'
+
+MAXIMUM_LIMIT = 90
+MINIMUM_BALANCE = 1
 
 class Oystercard
-  MAXIMUM_LIMIT = 90
-  MINIMUM_BALANCE = 1
 
   def initialize(starting_balance)
     @balance = starting_balance
@@ -16,15 +17,8 @@ class Oystercard
   end
 
   def top_up(amount)
-    new_balance = (@balance += amount)
-
-    if new_balance <= MAXIMUM_LIMIT
-      @balance = new_balance
-
-    elsif new_balance > MAXIMUM_LIMIT
-      "Cannot exceed maximum limit of £#{MAXIMUM_LIMIT}"
-    end
-
+    fail "Cannot exceed maximum limit of £#{MAXIMUM_LIMIT}" if @balance + amount > MAXIMUM_LIMIT
+    @balance += amount
   end
 
   def deduct(fare)

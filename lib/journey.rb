@@ -24,14 +24,13 @@ class Journey
   def journey_complete?
     if on_journey? == false
       true
+    else
+      false
     end
   end
 
   def on_journey?
     if @entry_station.size > 0
-      true
-    else
-      false
     end
   end
 
@@ -44,6 +43,3 @@ class Journey
   end
 
 end
-
-outputs = Journey.new
-puts outputs.journey_complete?

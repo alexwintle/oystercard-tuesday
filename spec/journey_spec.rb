@@ -8,7 +8,7 @@ RSpec.describe Journey do
   before(:each) do
     @journey = Journey.new
     @oystercard = Oystercard.new(0)
-    @waterloo = Station.new("Waterloo", 1)
+    @waterloo_station = Station.new("Waterloo", 1)
   end
 
   describe "#journey_complete?" do
@@ -19,11 +19,11 @@ RSpec.describe Journey do
     end
   end
 
-  describe "#fare" do
-    it 'should give a penalty if the user does not touch_out or touch_in' do
-
-    end
-  end
+  # describe "#fare" do
+  #   it 'should give a penalty if the user does not touch_out or touch_in' do
+  #
+  #   end
+  # end
 
   describe "#touch_in" do
     it 'should touch in to get through the barriers and set and call on_journey' do
@@ -73,36 +73,36 @@ RSpec.describe Journey do
 
   describe "#touch_in and #touch_out" do
     it 'should check that touching in and out creates one journey' do
-      fare = 10
       @journey.touch_in("Waterloo")
-      @journey.touch_out("Bank", fare)
-      @oystercard.add_journeys(@journey.update_journeys(fare))
+      @journey.touch_out("Bank", 10)
+      @journey.journey_formatter
+      @oystercard.add_journeys(@journey.current_journey)
       expect(@oystercard.journey_history).to eq [[{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}]]
     end
   end
 
   describe "#touch_in and #touch_out" do
     it 'should check that touching in and out creates one journey (using .length, instead of checking for a complete hash)' do
-      fare = 10
       @journey.touch_in("Waterloo")
-      @journey.touch_out("Bank", fare)
-      @oystercard.add_journeys(@journey.update_journeys(fare))
+      @journey.touch_out("Bank", 10)
+      @journey.journey_formatter
+      @oystercard.add_journeys(@journey.current_journey)
       expect(@oystercard.journey_history.length).to eq 1
     end
   end
 
   describe "#touch_in and #touch_out" do
     it 'should check that touching in and out creates one journey' do
-      fare = 10
-      @journey2 = Journey.new
       @journey.touch_in("Waterloo")
-      @journey.touch_out("Bank", fare)
-      @oystercard.add_journeys(@journey.update_journeys(fare))
-      @journey2.touch_in("Liverpool")
-      @journey2.touch_out("Fleet", fare)
-      @oystercard.add_journeys(@journey2.update_journeys(fare))
+      @journey.touch_out("Bank", 10)
+      @journey.journey_formatter
+      @oystercard.add_journeys(@journey.current_journey)
+      @journey.touch_in("Liverpool")
+      @journey.touch_out("Euston", 10)
+      @journey.journey_formatter
+      @oystercard.add_journeys(@journey.current_journey)
       expect(@oystercard.journey_history).to eq [[{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}],
-                                                 [{"Entry Station: "=>"Liverpool", "Exit Station: "=>"Fleet", "Fare: "=>10}]]
+                                                 [{"Entry Station: "=>"Liverpool", "Exit Station: "=>"Euston", "Fare: "=>10}]]
     end
   end
 
