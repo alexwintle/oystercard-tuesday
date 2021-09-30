@@ -5,7 +5,8 @@ MINIMUM_BALANCE = 1
 
 class Oystercard
 
-  def initialize(starting_balance)
+  def initialize(starting_balance, journey: Journey.new)
+    @journey = journey
     @balance = starting_balance
     @journey_history = []
   end
@@ -14,6 +15,15 @@ class Oystercard
 
   def add_journeys(journey)
     @journey_history.push(journey)
+  end
+
+  def touch_in(entry_station)
+    @journey.enter(entry_station)
+  end
+
+  def touch_out(exit_station,fare)
+    @journey.exit(exit_station)
+    deduct(fare)
   end
 
   def top_up(amount)

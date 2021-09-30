@@ -3,64 +3,45 @@ class Journey
   PENALTY_FARE = 6
 
   def initialize
-    @entry_station = ""
-    @exit_station = ""
-    @fare = 0
     @current_journey = {}
+    @fare = nil
+    @complete = false
   end
 
   attr_accessor :entry_station, :exit_station, :fare, :current_journey
 
-  def touch_in(entry_station)
-    @entry_station = entry_station.to_s
-    on_journey?
+  def enter(entry_station = nil)
+    @entry_station = entry_station
+    @complete = false
   end
 
-  def zone(zone)
-
-  end
-
-  def touch_out(exit_station, fare) # deduct not working, ask for help
+  def exit(exit_station = nil, fare)
     @fare = fare
-    @exit_station = exit_station.to_s
+    @exit_station = exit_station
     journey_formatter
-    on_journey?
+    @complete = true
+    self
   end
 
-  def journey_complete?
-    if on_journey? == false
-      true
-    else
-      true
-    end
-
+  def complete?
+    @complete
   end
 
-  def on_journey?
-    if @entry_station.size > 0
-      "On a journey?: #{true}"
-    else
-      "On a journey?: #{false}"
-    end
-
+  def fare
+    PENALTY_FARE if penalty?
   end
-
-  # def fare
-  #   if @entry_station.size < 0 or @exit_station.size < 0
-  #     @balance -= PENALTY_FARE
-  #   else
-  #     deduct(fare)
-  #   end
-  # end
 
   def journey_formatter
       @current_journey = {
       "Entry Station: " => @entry_station,
       "Exit Station: " => @exit_station,
       "Fare: " => @fare
-
     }
 
+  end
+
+  def penalty?
+    (!entry_station || !exit_station)
   end
 
 end
