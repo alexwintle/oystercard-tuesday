@@ -5,6 +5,6 @@ class Station
     @zone = zone
   end
 
-  attr_reader :station_name, :zone
+  attr_accessor :station_name, :zone
 
 end

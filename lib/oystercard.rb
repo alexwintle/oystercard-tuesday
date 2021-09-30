@@ -10,7 +10,7 @@ class Oystercard
     @journey_history = []
   end
 
-  attr_reader :balance, :journey_history
+  attr_accessor :balance, :journey_history
 
   def add_journeys(journey)
     @journey_history.push(journey)
@@ -22,7 +22,7 @@ class Oystercard
   end
 
   def deduct(fare)
-    @balance = fare.to_i - @balance
+    @balance -= fare
   end
 
   def minimum_balance?

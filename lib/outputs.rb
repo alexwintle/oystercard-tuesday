@@ -18,7 +18,6 @@ class Outputs
     puts "=============FARE============"
     puts journey1.fare
     puts "=============CURRENT JOURNEY============"
-    journey1.journey_formatter
     puts journey1.current_journey
     oystercard.add_journeys(journey1.current_journey)
     puts "=============ALL JOURNEYS============"
@@ -39,7 +38,6 @@ class Outputs
     puts "=============FARE============"
     puts journey2.fare
     puts "=============CURRENT JOURNEY============"
-    journey2.journey_formatter
     puts journey2.current_journey
     oystercard.add_journeys(journey2.current_journey)
     puts "=============ALL JOURNEYS============"
@@ -55,10 +53,6 @@ class Outputs
     puts journey.touch_out("Bank", 10)
     puts journey.journey_formatter
     puts oystercard.add_journeys(journey.current_journey)
-
   end
 
 end
-
-outputs = Outputs.new
-outputs.outputs_touch_out

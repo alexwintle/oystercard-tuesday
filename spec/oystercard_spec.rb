@@ -16,7 +16,7 @@ RSpec.describe Oystercard do
 
   describe "#initialize" do
     it 'should check that the card has an empty list of journeys by default' do
-      expect(@oystercard.journey_history).to eq []
+      expect(@oystercard.journey_history).to be_empty
     end
   end
 
