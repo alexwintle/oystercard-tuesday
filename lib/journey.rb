@@ -13,9 +13,8 @@ class Journey
   attr_reader :entry_station, :exit_station, :fare, :current_journey
 
   def touch_in(entry_station)
-    on_journey?
     @entry_station = entry_station.to_s
-
+    on_journey?
   end
 
   def touch_out(exit_station, fare) # deduct not working, ask for help
@@ -35,9 +34,9 @@ class Journey
 
   def on_journey?
     if @entry_station.size > 0
-      true
+      "On a journey?: #{true}"
     else
-      false
+      "On a journey?: #{false}"
     end
 
   end

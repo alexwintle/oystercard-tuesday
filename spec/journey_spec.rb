@@ -27,11 +27,11 @@ RSpec.describe Journey do
 
   describe "#touch_in" do
     it 'should touch in to get through the barriers and set and call on_journey' do
-      expect(@journey.touch_in("Waterloo")).to eq "Waterloo"
+      expect(@journey.touch_in("Waterloo")).to eq "On a journey?: true"
     end
   end
 
-  describe "#touch_in" do
+  describe "#touch_in & entry_station" do
     it 'should touch in to get through the barriers and set @on_journey to true' do
       @journey.touch_in("Waterloo")
       expect(@journey.entry_station).to eq "Waterloo"
@@ -40,7 +40,7 @@ RSpec.describe Journey do
 
   describe "#touch_out" do
     it 'should touch out to get through the barriers and set @on_journey to false' do
-      expect(@journey.touch_out(10, "Bank")).to eq false
+      expect(@journey.touch_out(10, "Bank")).to eq "On a journey?: false"
     end
   end
 
@@ -54,20 +54,20 @@ RSpec.describe Journey do
   describe "#on_journey?" do
     it 'should return whether the customer is on a journey after touching-out' do
       @journey.touch_out(10, "Bank")
-      expect(@journey.on_journey?).to eq false
+      expect(@journey.on_journey?).to eq "On a journey?: false"
     end
   end
 
   describe "#on_journey?" do
     it 'should return whether the customer is on a journey after touching-in' do
       @journey.touch_in("Waterloo")
-      expect(@journey.on_journey?).to eq true
+      expect(@journey.on_journey?).to eq "On a journey?: true"
     end
   end
 
-  describe "#on_journey?" do
+  describe "#on_journey? & initialize" do
     it 'should return whether the customer is on a journey when Oystercard class is initialized (should always return false)' do
-      expect(@journey.on_journey?).to eq false
+      expect(@journey.on_journey?).to eq "On a journey?: false"
     end
   end
 
