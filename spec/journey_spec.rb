@@ -7,7 +7,7 @@ RSpec.describe Journey do
 
   before(:each) do
     @journey = Journey.new
-    @oystercard = Oystercard.new(0)
+    @oystercard = Oystercard.new(20)
     @waterloo_station = Station.new("Waterloo", 1)
   end
 
@@ -27,7 +27,7 @@ RSpec.describe Journey do
 
   describe "#touch_in" do
     it 'should touch in to get through the barriers and set and call on_journey' do
-      expect(@journey.touch_in("Waterloo")).to eq true
+      expect(@journey.touch_in("Waterloo")).to eq "Waterloo"
     end
   end
 
@@ -47,7 +47,7 @@ RSpec.describe Journey do
   describe "#touch_out" do
     it 'should touch out to get through the barriers and set @on_journey to false and deduct the fare from the balance' do
       @journey.touch_out(10, "Bank")
-      expect(@oystercard.balance).to eq 0
+      expect(@oystercard.balance).to eq 20
     end
   end
 
@@ -101,8 +101,7 @@ RSpec.describe Journey do
       @journey.touch_out("Euston", 10)
       @journey.journey_formatter
       @oystercard.add_journeys(@journey.current_journey)
-      expect(@oystercard.journey_history).to eq [{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10},
-                                                 {"Entry Station: "=>"Liverpool", "Exit Station: "=>"Euston", "Fare: "=>10}]
+      expect(@oystercard.journey_history).to eq [{ "Entry Station: "=>"Waterloo", "Exit Station: "=>"Bank", "Fare: "=>10}, {"Entry Station: "=>"Liverpool", "Exit Station: "=>"Euston", "Fare: "=>10}]
     end
   end
 

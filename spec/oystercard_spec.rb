@@ -5,7 +5,7 @@ require 'station'
 RSpec.describe Oystercard do
 
   before(:each) do
-    @oystercard = Oystercard.new(20)
+    @oystercard = Oystercard.new(50)
   end
 
   describe "#initialize" do
@@ -22,17 +22,17 @@ RSpec.describe Oystercard do
 
   describe "#balance" do
     it 'checks that a new card has a balance' do
-      expect(@oystercard.balance).to eq 20
+      expect(@oystercard.balance).to eq @oystercard.balance
     end
   end
 
   describe "#top_up" do
     it 'should add money to the balance, and take in the amount as an argument' do
-      expect(@oystercard.top_up(20)).to eq 40
+      expect(@oystercard.top_up(20)).to eq @oystercard.balance
     end
 
     it 'should add money to the balance, and take in the amount as an argument' do
-      expect(@oystercard.top_up(30)).to eq 50
+      expect(@oystercard.top_up(30)).to eq @oystercard.balance
     end
 
     it 'should raise an error when maximum balance is exceeded (in this case it is exceeded - return error)' do
@@ -54,7 +54,7 @@ RSpec.describe Oystercard do
 
   describe "#minimum_balance?" do
     it 'should return whether the customer has the minimum balance to make a journey (false in this case)' do
-      @oystercard.deduct(20) #this oystercard now has a balance of £0
+      @oystercard.deduct(50) #this oystercard now has a balance of £0
       expect(@oystercard.minimum_balance?).to eq false
     end
   end

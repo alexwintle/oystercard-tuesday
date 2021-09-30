@@ -1,23 +1,26 @@
 class Journey
+
+  PENALTY_FARE = 6
+
   def initialize
     @entry_station = ""
     @exit_station = ""
     @fare = 0
     @current_journey = {}
+
   end
 
   attr_reader :entry_station, :exit_station, :fare, :current_journey
 
-  def touch_in(station_name)
-    @entry_station = station_name.to_s
+  def touch_in(entry_station)
     on_journey?
+    @entry_station = entry_station.to_s
+
   end
 
-  def touch_out(exit_station, fare)
+  def touch_out(exit_station, fare) # deduct not working, ask for help
     @fare = fare
-    oystercard = Oystercard.new(0)
     @exit_station = exit_station.to_s
-    oystercard.deduct(fare)
     on_journey?
   end
 
@@ -37,6 +40,14 @@ class Journey
       false
     end
 
+  end
+
+  def fare
+    if @entry_station.size < 0 or @exit_station.size < 0
+      @balance -= PENALTY_FARE
+    else
+      deduct(fare)
+    end
   end
 
   def journey_formatter
